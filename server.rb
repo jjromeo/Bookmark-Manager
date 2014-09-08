@@ -8,3 +8,17 @@ require './lib/link'
 DataMapper.finalize
 
 DataMapper.auto_upgrade!
+
+# set :views, Proc.new{ File.join(root, 'views') } 
+
+get '/' do
+	@links = Link.all
+	erb :index
+end
+
+post '/links' do
+	url = params["url"]
+	title = params["title"]
+	Link.create(:url => url, :title => title)
+	redirect to('/')
+end

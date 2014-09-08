@@ -1,4 +1,4 @@
 require 'rubygems'
-require File.join(File.dirname(__FILE__), 'bookmark_manager.rb')
+require File.join(File.dirname(__FILE__), 'server.rb')
 
-run bookmark_manager.rb
+run 'server.rb'
