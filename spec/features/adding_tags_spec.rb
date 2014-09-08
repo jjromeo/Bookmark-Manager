@@ -7,8 +7,8 @@ feature "Adding tags" do
 			"Makers Academy",
 			['education', 'ruby'])
 		link = Link.first
-		expect(link.tags).to include("education")
-		expect(link.tags).to include("ruby")
+		expect(link.tags.map(&:text)).to include("education")
+		expect(link.tags.map(&:text)).to include("ruby")
 	end
 
 	def add_link(url, title, tags = [])
