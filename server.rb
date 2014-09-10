@@ -78,6 +78,11 @@ class BookmarkManager < Sinatra::Base
 		end
 	end
 
+	delete '/sessions' do
+		session[:user_id] = nil
+		flash[:notice] = "Good bye!"
+		redirect to('/')
+	end
 
 	helpers do
 		def current_user
