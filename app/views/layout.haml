@@ -1,0 +1,7 @@
+%head
+  :css
+    body { background-color: gray;}
+%body
+  = partial :welcome_message
+  = partial :flash_warnings
+  = yield

@@ -13,14 +13,14 @@ class BookmarkManager < Sinatra::Base
 	enable :sessions
 	set :session_secret, 'super secret'
 	register Sinatra::Partial
-	set :partial_template_engine, :erb
+	set :partial_template_engine, :haml
 	
 	use Rack::Flash
 	use Rack::MethodOverride
 
 	get '/' do
 		@links = Link.all
-		erb :index
+		haml :index
 	end
 
 	post '/links' do
@@ -36,12 +36,12 @@ class BookmarkManager < Sinatra::Base
 	get '/tags/:text' do 
 		tag = Tag.first(:text => params[:text])
 		@links = tag ? tag.links : []
-		erb :index
+		haml :index
 	end
 
 	get '/users/new' do 
 		@user = User.new
-		erb :"users/new"
+		haml :"users/new"
 	end
 
 	post '/users' do 
@@ -53,13 +53,13 @@ class BookmarkManager < Sinatra::Base
 			redirect to('/')
 		else
 			flash.now[:errors] = @user.errors.full_messages
-			erb :"users/new"
+			haml :"users/new"
 
 		end
 	end
 
 	get '/sessions/new' do 
-		erb :"sessions/new"
+		haml :"sessions/new"
 	end
 
 	post '/sessions/new' do 
@@ -70,7 +70,7 @@ class BookmarkManager < Sinatra::Base
 			redirect to('/')
 		else
 			flash[:errors] = ["The email or password is incorrect"]
-			erb :"sessions/new"
+			haml :"sessions/new"
 		end
 	end
 
