@@ -66,5 +66,21 @@ feature 'User signs out' do
 
 end
 
+feature "User forgets their password" do 
+
+	before(:each) do
+		User.create(email: "test@test.com",
+					password: 'test',
+					password_confirmation: 'test')
+	end
+
+	scenario 'User can request a password reset' do 
+		visit '/sessions/new'
+		expect(page).to have_content("Forgotten password?")
+		click_link "Forgotten password?"
+		expect(page).to have_content("Please enter your email address")
+	end
+
+end
 
 

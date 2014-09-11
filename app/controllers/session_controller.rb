@@ -20,4 +20,12 @@ class BookmarkManager <Sinatra::Base
 		flash[:notice] = "Good bye!"
 		redirect to('/')
 	end
+
+	get '/sessions/forgot' do 
+		haml :"/sessions/forgot"
+	end
+
+	post '/sessions/forgot' do 
+	end
+
 end
